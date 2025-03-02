@@ -1,0 +1,9 @@
+dir1:
+total 0
+drwxrwxrwx 1 xdianaelena xdianaelena 512 Mar  2 16:30 dir1_1
+drwxrwxrwx 1 xdianaelena xdianaelena 512 Mar  2 16:30 dir1_2
+drwxrwxrwx 1 xdianaelena xdianaelena 512 Mar  2 16:30 dir1_3
+
+dir2:
+total 0
+drwxrwxrwx 1 xdianaelena xdianaelena 512 Mar  2 16:30 dir2_1

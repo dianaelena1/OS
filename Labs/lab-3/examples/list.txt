@@ -1,0 +1,12 @@
+total 24
+-rwxrwxrwx 1 xdianaelena xdianaelena 1281 Feb 21 10:29 data-streams.sh
+drwxrwxrwx 1 xdianaelena xdianaelena  512 Mar  2  2025 dir1
+drwxrwxrwx 1 xdianaelena xdianaelena  512 Mar  2  2025 dir2
+-rwxrwxrwx 1 xdianaelena xdianaelena    0 Mar  2  2025 list.txt
+-rwxrwxrwx 1 xdianaelena xdianaelena  281 Mar  2  2025 stdout1.txt
+-rwxrwxrwx 1 xdianaelena xdianaelena  709 Feb 21 10:21 unix_directory_practice.sh
+-rwxrwxrwx 1 xdianaelena xdianaelena 1067 Feb 21 10:23 unix_file_directory_tasks.sh
+-rwxrwxrwx 1 xdianaelena xdianaelena 2006 Mar  2 16:21 unix_permissions_and_user_management.sh
+-rwxrwxrwx 1 xdianaelena xdianaelena 1619 Feb 21 10:24 unix_text_editing_and_file_operations.sh
+-rwxrwxrwx 1 xdianaelena xdianaelena 1869 Feb 21 10:26 unix_user_management.sh
+-rwxrwxrwx 1 xdianaelena xdianaelena   24 Mar  2  2025 users.txt

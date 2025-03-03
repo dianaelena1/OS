@@ -39,25 +39,3 @@
 # fi
 
 
-
-#!/bin/bash
-
-if [ -z "$1" ]; then
-    echo "No parameters given"
-    exit 1
-fi
-
-if [ ! -d "$1" ]; then
-    echo "Parameter is not a folder"
-    exit 1
-fi
-
-
-
-
-
-
-
-
-
-

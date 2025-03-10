@@ -24,6 +24,6 @@ man -K "$search_term" -o "$output_file"
 echo "Displaying details about 'history' command from man:"
 man history
 
-# Using the history command to see past commands
-echo "Showing recent command history:"
-history | tail -10
+# # Using the history command to see past commands
+# echo "Showing recent command history:"
+# history | tail -10

@@ -33,7 +33,7 @@ sudo usermod -aG group2 test_user2
 getent group group1
 getent group group2
 
-# Step 5: Open three terminals (manual step)
+# Step 5: Open three terminals 
 
 # Step 6: Try to create a user from test_user1_1 (should fail)
 
@@ -41,13 +41,17 @@ getent group group2
 echo "Adding test_user1_1 to sudo group..."
 sudo usermod -aG sudo test_user1_1
 
-# Step 8: Log out test_user1_1 and log in again (manual step)
+# Step 8: Log out test_user1_1 and log in again
+su your_user
+su test_user1_1
 
 # Step 9: Create lab_3 folder in test_user1_1 home directory
 echo "Creating folder lab_3 in test_user1_1 home directory..."
 sudo -u test_user1_1 mkdir /home/test_user1_1/lab_3
 
 # Step 10: Try accessing home directory of test_user1_1 as test_user1_2 (should fail)
+su test_user1_2
+cd -
 
 # Step 11: Change group ownership of test_user1_1 home folder to group1
 echo "Changing group of test_user1_1 home folder to group1..."

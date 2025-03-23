@@ -285,7 +285,11 @@ while true; do
 
     # Check if all words have been found
     if all_found; then
-        echo "All words found. Exiting."
+        echo "All words found. Exiting.."
         break
     fi
 done
+
+
+
+

@@ -1,1 +1,0 @@
-#Write a shell script which takes as parameter a directory name. The script will display the filename, and the first 3 lines of each ASCII text file found in that directory.

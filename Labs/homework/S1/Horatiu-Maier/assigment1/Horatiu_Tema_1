@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# eroare: verifica daca numarul de arguemnte date e 1
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <username>" # Usage: Horatiu_Tema_1 <username>
+    exit 1
+fi
+
+USERNAME=$1 # username ul e primul argument scris in terminal
+
+# ia numarul de procese ale userului
+PROCESS_COUNT=$(ps -u $USERNAME --no-headers | wc -l) # ps -u <username> scrie toate procesele userului, --no-headers elimina headerul, wc -l numara liniile
+
+echo "User '$USERNAME' has $PROCESS_COUNT processes running."

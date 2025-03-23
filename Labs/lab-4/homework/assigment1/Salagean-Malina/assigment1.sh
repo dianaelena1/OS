@@ -1,1 +1,0 @@
-#Write a shell script which takes as parameter a username (ex: bdae0198). The script will determine the section (extract the letters on positions 3 and 4) and the sum of all digits in the username.

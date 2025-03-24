@@ -29,13 +29,15 @@ grep -E 'cheese|salsa'
 
 grep is used for pattern matching
 
-Check if file is empty
-!/bin/bash
+#Check if file is empty
+#!/bin/bash
 
-file_name=example.txt
+file_name=fruits.txt
 
 if ! grep -q . "${file_name}"; then
-echo "'example.txt' is empty."
+echo "'fruits.txt' is empty."
 fi
+
+#make this into a separate script
 
 

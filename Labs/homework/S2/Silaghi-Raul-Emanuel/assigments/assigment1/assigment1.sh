@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Write a shell script that reads words from keyboard (the reading stops when the user has entered the word "stop").
-# The script will display the list of words entered from the keyboard.
+# Write a shell script that reads words from keyboard (the reading stops when the user has entered the word "stop"). The script will display the list of words entered from the keyboard.
 words=()
 echo "Enter the words. Type 'stop' to finish."
 

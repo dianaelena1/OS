@@ -1,0 +1,34 @@
+pines
+yellowstone
+chips
+salsa
+french fries
+igrapes
+papaya
+honey
+Orange Juice
+mustard
+nuts
+muffins
+olive oil 
+rice
+plantain
+speghetti
+salsa
+sugar
+vegetable oiltea
+tomatoes
+carrots
+red pepper
+yogurt
+peanut butter
+crackers
+newitem 1
+new item 2
+strawberries
+raspberries
+french fries
+corn
+color
+colour
+colouuur

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #10	Write a shell script which takes as parameter an existing group number (ex: 821). The script will display the details about that group.
 
 echo "Enter group number:"

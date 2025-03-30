@@ -1,0 +1,10 @@
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <username>"
+    exit 1
+fi
+
+USERNAME=$1
+
+PROCESS_COUNT=$(ps -u $USERNAME --no-header | wc -l)
+
+echo "User '$USERNAME' has $PROCESS_COUNT processes running."

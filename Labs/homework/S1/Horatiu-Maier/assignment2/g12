@@ -1,0 +1,30 @@
+#!/bin/bash
+# This scriptr reads a list of filenames from a file and deletes matching files from the specified directories.
+# Check if at least two arguments are provided
+if [ "$#" -lt 2 ]; then
+    echo "Usage: $0 file_list directory1 [directory2 ...]"
+    exit 1
+fi
+
+file_list="$1"
+shift  # Remove the first argument, so the rest are directories
+
+# Check if the file list exists
+if [ ! -f "$file_list" ]; then
+    echo "The file list $file_list does not exist."
+    exit 1
+fi
+
+# Read each filename from the list, IFS ignores the delimitators of bash, -r reads ignoring special characters, checks if the last line is read corectly even tho ti does not have \n
+while IFS= read -r filename || [ -n "$filename" ]; do
+    # Loop through each directory provided
+    for dir in "$@"; do
+        if [ -d "$dir" ]; then
+            # Find and delete files with the given name in the directory and subdirectories
+            find "$dir" -type f -name "$filename" -exec rm -f {} +
+            echo "Deleted files named '$filename' in directory $dir"
+        else
+            echo "Directory $dir does not exist."
+        fi
+    done
+done < "$file_list"

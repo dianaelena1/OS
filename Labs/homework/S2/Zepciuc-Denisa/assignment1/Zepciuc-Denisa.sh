@@ -4,11 +4,13 @@
 # in the current directory and its subdirectories that
 # have write permission for the group of which the owner belongs.
 
-if [ -z "/Users/zepciucdenisa/Desktop" ]; then
+if [ -z "$1" ]; then
     echo "Usage: $0 <directory>"
     exit 1
 fi
-DIRECTORY="/Users/zepciucdenisa/Desktop"
+# if [ $# -ne/-lt 0 ] ..
+
+DIRECTORY="$1"
 
 if [ ! -d "$DIRECTORY" ]; then
     echo "Error: '$DIRECTORY' is not a directory."

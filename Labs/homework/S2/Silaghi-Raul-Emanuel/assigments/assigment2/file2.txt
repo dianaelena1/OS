@@ -1,0 +1,4 @@
+ANOTHER FILE
+Mixed Case Here
+UPPERCASE ONLY
+lowercase line

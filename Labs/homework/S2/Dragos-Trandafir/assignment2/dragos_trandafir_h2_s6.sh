@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# S6.Write a shell script which takes as parameters a lowercase letter followed by several file names. The script will replace any special character # with the given letter in all files given as parameters.
+# S6.Write a shell script which takes as parameters a lowercase letter followed by several file names. 
+# The script will replace any special character # with the given letter in all files given as parameters.
 
 #echo "Read lowercase letter"
 #read lc_letter

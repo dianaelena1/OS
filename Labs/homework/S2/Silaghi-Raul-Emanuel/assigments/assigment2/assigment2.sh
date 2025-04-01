@@ -14,6 +14,7 @@ for file in "$@"; do
         # Use grep to find lines containing only uppercase letters
         grep '^[A-Z ]*$' "$file"
     else
+
         echo "Error: $file is not a valid file."
     fi
 done

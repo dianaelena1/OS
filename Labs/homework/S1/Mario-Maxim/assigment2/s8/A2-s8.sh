@@ -3,8 +3,6 @@
 #The script will replace the 3rd word with the 1st word in each line of the given files. 
 #The words shall contain only letters or numbers and shall be separated by ":".
 
-#!/bin/bash
-
 # Check if at least one file is given
 if [ "$#" -lt 1 ]; then
     echo "Usage: $0 file1 [file2 ...]"

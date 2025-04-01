@@ -16,6 +16,5 @@ for file in "$@"; do
         echo "File '$file' does not exist."
         continue
     fi
-
     sed -i "" "s/[[:<:]]$word1[[:>:]]/$word2/g" "$file"
 done

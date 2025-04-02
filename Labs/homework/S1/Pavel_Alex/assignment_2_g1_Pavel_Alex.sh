@@ -12,12 +12,12 @@ if [ ! -d "$directory" ]; then
     exit 1
 fi
 
-# function to process files
+
 process_files() {
     local dir="$1"
     
     find "$dir" -type f | while read -r file; do
-        # check if the file is a text file using file command
+        
         if file "$file" | grep -q "text"; then
             echo "=== Contents of: $file ==="
             cat "$file"

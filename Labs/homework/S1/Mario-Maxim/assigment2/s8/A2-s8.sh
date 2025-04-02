@@ -9,14 +9,14 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 
-# Loop through each file
+
 for file in "$@"; do
-    # Check if the file exists
+    
     if [ ! -f "$file" ]; then
         echo "File $file does not exist!"
         continue
     fi
 
-   #replace 3rd field with 1st using awk
+ 
    awk -F: -v OFS=: '{ if (NF>=3) $3=$1; print }' "$file"
 done

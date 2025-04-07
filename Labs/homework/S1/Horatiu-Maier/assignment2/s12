@@ -7,13 +7,12 @@ if [ "$#" -lt 2 ]; then
 fi
 
 letter="$1"
-shift  # Remove the first argument, so the rest are filenames
+shift  
 
-# Loop through each provided file
 for file in "$@"; do
-    # Check if the file exists and is a regular file
+
     if [ -f "$file" ]; then 
-        # Use sed to replace all digits [0-9] with the given letter
+      
         sed -i "s/[0-9]/$letter/g" "$file"
         echo "Modified $file"
     else

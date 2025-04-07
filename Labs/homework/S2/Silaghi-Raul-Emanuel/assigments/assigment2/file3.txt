@@ -2,5 +2,3 @@ SOME WORDS
 Only This Line Is Uppercase
 PYTHON JAVA BASH
 NoN UpPeR
-
-

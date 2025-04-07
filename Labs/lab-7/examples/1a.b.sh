@@ -31,3 +31,12 @@ total=0
 done
 
 echo "Total lines: $total"
+
+
+
+x=7
+y=2
+let "z = x * y"
+echo $z
+
+

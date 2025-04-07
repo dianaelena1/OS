@@ -4,8 +4,6 @@
 #The script will display the sum of numbers entered from the keyboard.
 
 
-
-
 sum=0
 
 while true; do

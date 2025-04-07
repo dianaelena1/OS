@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 if [ "$#" -lt 1 ]; then
     echo "Please provide at least one file name as a parameter."
     exit 1

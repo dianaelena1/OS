@@ -1,4 +1,3 @@
 Another Example with more UPPERCASE letters.
 And some lowercase letters too.
 Testing the case ratio now.
-

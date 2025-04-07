@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#Write a shell script which takes as parameter a directory name. The script will display the content of all text files in the given directory and its subdirectories. 
+
 if [ -z "$1" ]; then
     echo "Usage: $0 <directory>"
     exit 1

@@ -8,10 +8,9 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 
-# Get the list of currently logged-in users
 logged_in_users=$(who | awk '{print $1}' | sort -u)
 
-# Check each given user
+
 for user in "$@"; do
     if echo "$logged_in_users" | grep -w "$user"; then
         echo "User '$user' is currently logged in."

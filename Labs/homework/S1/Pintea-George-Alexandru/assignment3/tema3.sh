@@ -3,13 +3,11 @@
 #display its name and the average number of words per line. At the end, the script will display also the
 #average number of words per file.
 
-#Ensure that we have arguments
 
 if [ "$#" -lt 1 ]; then
 	echo "Usage $0 file1, file2,..."
 	exit 1 
 fi
-
 
 total_words=0
 total_lines=0

@@ -6,7 +6,7 @@
 # Use the ping command to verify that a given host is alive.
 
 for site in "$@"; do
-	ping -c 1 -W 1 "$site" > /dev/null 2>&1 # stream-ul 2 (de erori) redirectionat catre stream-ul 1 si unu a fost red. catre null
+	ping -c 1 -W 1 "$site" > /dev/null 2>&1 
 	if [ $? -eq 0 ]; then
 		echo "The site $site is alive"
 	else

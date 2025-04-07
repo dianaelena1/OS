@@ -1,0 +1,3 @@
+This is a Sample Text.
+It contains both UPPERCASE and lowercase letters.
+There are more lowercase letters here.

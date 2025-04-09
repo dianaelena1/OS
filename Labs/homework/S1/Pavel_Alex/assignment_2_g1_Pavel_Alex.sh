@@ -1,4 +1,5 @@
 #!/bin/bash
+#write a shell script which takes as parameter a directory name. The script will display the content of all text files in the given direcory and its subdirectories
 
 if [ $# -ne 1 ]; then
     echo "Usage: $0 directory_name"

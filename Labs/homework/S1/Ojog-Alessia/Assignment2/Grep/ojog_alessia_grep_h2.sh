@@ -18,7 +18,7 @@ for file in "$@"; do
     fi
     
     echo "Processing file: $file"
-    grep -E "^[^a-zA-Z0-9]*$" "$file" 
+    grep -E "^[^a-zA-Z0-9]*$" "$file"
 done
 #grep searches for text in a file
 # "^[^a-zA-Z0-9]*$" -expression matches any character that is not a letter or digit

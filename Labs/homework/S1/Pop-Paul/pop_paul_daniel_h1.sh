@@ -8,29 +8,26 @@
 #ls -l ____.txt to check manually the prmision
 #Owner | Group | Others permisions
 
-# Create two files in the current directory
 touch file_with_group_write.txt file_without_group_write.txt
 
-# Give group write permission to one file
-chmod 664 file_with_group_write.txt  # -rw-rw-r--
 
-# Remove group write permission from the other file
-chmod 644 file_without_group_write.txt  # -rw-r--r--
+chmod 664 file_with_group_write.txt  
 
-# Create a subdirectory
+
+chmod 644 file_without_group_write.txt  
+
+
 mkdir -p test_subdir
 
-# Create two files inside the subdirectory
+
 touch test_subdir/subfile_with_group_write.txt
 touch test_subdir/subfile_without_group_write.txt
 
-# Give group write permission to one file in the subdirectory
-chmod 664 test_subdir/subfile_with_group_write.txt  # -rw-rw-r--
+chmod 664 test_subdir/subfile_with_group_write.txt 
 
-# Remove group write permission from the other file
-chmod 644 test_subdir/subfile_without_group_write.txt  # -rw-r--r--
 
-# Print a message
+chmod 644 test_subdir/subfile_without_group_write.txt  
+
 echo "Files and directory created successfully!"
 
 echo "Files with group write permission for the owner's group:"

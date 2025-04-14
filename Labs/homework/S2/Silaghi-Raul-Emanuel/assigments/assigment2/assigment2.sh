@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 if [ "$#" -lt 1 ]; then
     echo "Usage: $0 <uppercase_letter> <file1> ..."
     exit 1

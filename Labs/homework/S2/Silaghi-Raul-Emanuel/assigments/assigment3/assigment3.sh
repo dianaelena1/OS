@@ -17,3 +17,4 @@ for file in "$@"; do
 
     echo "$file l/U = $lower_count/$upper_count"
 done
+

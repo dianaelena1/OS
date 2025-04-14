@@ -1,0 +1,21 @@
+#!/bin/bash
+# This script replaces all digits in the given files with a specified letter.
+# Check if at least two arguments are provided
+if [ "$#" -lt 2 ]; then
+    echo "Usage: $0 letter file1 [file2 ...]"
+    exit 1
+fi
+
+letter="$1"
+shift  
+
+for file in "$@"; do
+
+    if [ -f "$file" ]; then 
+      
+        sed -i "s/[0-9]/$letter/g" "$file"
+        echo "Modified $file"
+    else
+        echo "File $file does not exist or is not a regular file."
+    fi
+done

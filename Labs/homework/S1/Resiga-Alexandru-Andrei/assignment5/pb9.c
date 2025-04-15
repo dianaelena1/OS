@@ -1,3 +1,7 @@
+// Write a C Program that receives as command line arguments two file names
+// and merges the lines of the two files (that are already sorted).
+
+
 #include <stdio.h>
 #include <string.h>
 

@@ -1,0 +1,5 @@
+Hello, world!
+This is a simple file for comparison.
+It has multiple lines.
+Some of the content will be different.
+Good luck!

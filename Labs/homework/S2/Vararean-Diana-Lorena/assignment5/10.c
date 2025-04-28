@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <ctype.h>
 
 
@@ -31,9 +30,8 @@ int main(int argc, char *argv[]) {
 
     char *line = NULL;
     size_t len = 0;
-    ssize_t nread;
 
-    while ((nread = getline(&line, &len, fp)) != -1) {
+    while ((getline(&line, &len, fp)) != -1) {
         if (!is_empty_line(line)) {
             printf("%s", line);
         }

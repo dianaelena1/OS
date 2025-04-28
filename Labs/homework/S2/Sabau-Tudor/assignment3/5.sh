@@ -11,17 +11,16 @@ for file in "$@"; do
         continue
     fi
 
-    line_number=0
-    display_count=0
+    awk -v filename="$file" '
+    BEGIN { count = 0 }
+    length($0) > 10 {
+        count++
+        print "Line " NR ": " substr($0, 11)
+    }
+    END {
+        print "Finished analyzing \"" filename "\". Lines displayed: " count
+        print "-------------------------------------------"
+    }
+    ' "$file"
 
-    while IFS= read -r line || [ -n "$line" ]; do  # <--- This OR fix is important
-        line_number=$((line_number + 1))
-        if [ ${#line} -gt 10 ]; then
-            echo "Line $line_number: ${line:10}"
-            display_count=$((display_count + 1))
-        fi
-    done < "$file"
-
-    echo "Finished analyzing '$file'. Lines displayed: $display_count"
-    echo "-------------------------------------------"
 done

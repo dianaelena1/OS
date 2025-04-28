@@ -7,7 +7,7 @@ sum=0
 while true
 do
         read val
-        if [ $val -eq 0 ]
+        if [ $val -lt 0 ]
         then
                 break
         fi

@@ -1,3 +1,7 @@
+#Write a shell script which takes as parameters an uppercase letter followed by several file names. The script will add the given letter in the front of each lowercase on each line in all given files.
+
+
+
 #!/bin/bash
 
 

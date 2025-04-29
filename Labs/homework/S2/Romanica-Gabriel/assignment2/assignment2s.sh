@@ -1,6 +1,8 @@
+#Write a shell script which takes as parameters a file name followed by several words. The script will delete all occurrences of the words given as parameters in the given file.
+
+
 #!/bin/bash
 
-#Write a shell script which takes as parameters a file name followed by several words. The script will delete all occurrences of the words given as parameters in the given file.
 
 if [ "$#" -lt 2 ]; then
     echo "Usage: $0 filename word1 [word2 ... wordN]"

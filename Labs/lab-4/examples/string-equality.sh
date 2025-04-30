@@ -14,9 +14,9 @@ echo "Second String: $string2"
 
 # Check if string1 is equal to string2
 if [ "$string1" = "$string2" ]; then
-echo "Strings are equal."
+    echo "Strings are equal."
 else
-echo "Strings are not equal."
+    echo "Strings are not equal."
 fi
 
 
@@ -34,9 +34,9 @@ echo "Frist string: $string1"
 echo "Second String: $string2"
 #Check the strings
 if [ "$string1" == "$string2" ]; then
-echo "Strings are equal."
+    echo "Strings are equal."
 else
-echo "Strings are not equal."
+    echo "Strings are not equal."
 fi
 
 
@@ -55,9 +55,9 @@ echo "Second String: $string2"
 
 #check the string's equality
 if [ "$string1" != "$string2" ]; then
-echo "Strings are not Equal."
+    echo "Strings are not Equal."
 else
-echo "Strings are Equal."
+    echo "Strings are Equal."
 
 
 
@@ -75,9 +75,9 @@ echo "Second String: $string2"
 
 #check two strings equality
 if test "$string1" = "$string2"; then
-echo "Strings are equal."
+    echo "Strings are equal."
 else
-echo "Strings are not equal."
+    echo "Strings are not equal."
 fi
 
 
@@ -99,10 +99,10 @@ echo "Second String: $string2"
 
 #Check the strings
 case "$string1" in
-$string2 )
-echo "Strings are equal"
-;;
-*)
-echo "Strings are not equal."
-;;
+    $string2)
+        echo "Strings are equal"
+    ;;
+    *)
+        echo "Strings are not equal."
+    ;;
 esac

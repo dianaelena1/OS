@@ -11,7 +11,7 @@ then
   exit 1
 fi
 
-directory=$1
+directory="$1"
 shift
 
 for filename in "$@"

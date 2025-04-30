@@ -35,7 +35,7 @@ grep is used for pattern matching
 file_name=fruits.txt
 
 if ! grep -q . "${file_name}"; then
-echo "'fruits.txt' is empty."
+    echo "'fruits.txt' is empty."
 fi
 
 #make this into a separate script

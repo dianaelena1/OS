@@ -48,8 +48,7 @@ do
     interval="$start_time-$end_time"
 
     users=$(last -s "$year-$month_num-$day $start_time" -t "$end_date $end_time" \
-        | grep -vE '^(reboot|wtmp)' \
-        | awk '{print $1}' | sort | uniq | wc -l)
+        | grep -vE '^(reboot|wtmp)' | awk '{print $1}' | sort | uniq | wc -l)
 
     printf "Interval: %s, Average users: %d\n" "$interval" "$users"
 done

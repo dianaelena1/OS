@@ -1,0 +1,20 @@
+#!/bin/bash
+# list_command_users.sh — list all users running a given command
+
+if [[ $# -ne 1 ]]; then
+  echo "Usage: $0 <command_name>"
+  exit 1
+fi
+
+cmd=$1
+
+# Use `ps -C` to select by command name, then extract the USER column
+users=$(ps -C "$cmd" -o user= | sort -u)
+
+if [[ -z "$users" ]]; then
+  echo "No users are running '$cmd'."
+  exit 0
+fi
+
+echo "Users running '$cmd':"
+echo "$users"

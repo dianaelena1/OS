@@ -1,6 +1,3 @@
-This is an example sentence containing  and .
- appears again here.
- is present in this sentence as well.
-word3 is also included in this sentence.
-We want to remove , , and word3.
-
+hello world
+hello123 world!
+goodbye world

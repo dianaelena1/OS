@@ -4,7 +4,7 @@
 my_string="Linuxsimply"
 
 if [ -n "$my_string" ]; then
-echo "The string is not empty."
+    echo "The string is not empty."
 fi
 
 
@@ -15,5 +15,5 @@ fi
 my_string=""
 
 if [ -z "$my_string" ]; then
-echo "The string is empty."
+    echo "The string is empty."
 fi

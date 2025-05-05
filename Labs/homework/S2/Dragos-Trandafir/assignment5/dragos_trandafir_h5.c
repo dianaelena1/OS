@@ -55,4 +55,4 @@ int main(int argc, char *argv[])
 }
 
 // gcc dragos_trandafir_h5.c -o dragos_trandafir_h5.exe
-// dragos_trandafir_h5.exe first second file1.txt
+// ./dragos_trandafir_h5.exe first second file1.txt

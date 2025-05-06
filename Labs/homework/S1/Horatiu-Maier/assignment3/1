@@ -8,7 +8,7 @@ if [ "$#" -ne 2 ]; then
 fi
 
 # Valid month abbreviations and their days (considering non-leap year)
-declare -A month_days=( #-A lets us use string instead of number for the array
+declare -A month_days=( 
     ["jan"]=31 ["feb"]=28 ["mar"]=31 ["apr"]=30 
     ["may"]=31 ["jun"]=30 ["jul"]=31 ["aug"]=31 
     ["sep"]=30 ["oct"]=31 ["nov"]=30 ["dec"]=31
@@ -31,7 +31,7 @@ if [[ -z "${month_days[$month]}" ]]; then
 fi
 
 # Check if day is a number
-if ! [[ "$day" =~ ^[0-9]+$ ]]; then # ^ inceput de sir, $ sfarsit de sir, [0-9]+ una sau mai multe cifre
+if ! [[ "$day" =~ ^[0-9]+$ ]]; then 
     echo "Error: Day must be a number"
     exit 1
 fi

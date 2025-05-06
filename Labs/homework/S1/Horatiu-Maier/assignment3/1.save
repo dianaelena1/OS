@@ -1,7 +1,0 @@
-#!/bin/bash
-# This script give all the time interval for a date and the average number of users that were connected to the server at that time frame
-# Check if at least two arguments are provided
-if [ "$#" -ne 2 || ]; then
-    echo "Usage: $0 [month] [day]"
-    exit 1
-fi

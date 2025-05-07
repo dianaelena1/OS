@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
 
     pid_t pid = fork();
 
-    if (pid < 0) {
+    if (pid == -1) {
         perror("fork failed");
         return 1;
     } 

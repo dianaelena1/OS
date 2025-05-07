@@ -82,16 +82,18 @@ int main() {
                             buf[k + 1] = t;
                         }
                 printf("Process 4: ");
-                for(int j=0; j<=9; j++)
-                    printf("%d", buff[i]);
-            } else if (i == 4) { //  Process 5
+                for (int j = 0; j < 10; j++) {
+                    printf("%c", buf[j]);
+                }
+                printf("\n");
+            } else if (i == 4) { // Process 5
                 close(p2_to_5[1]); close(p3_to_5[1]);
                 char buf_from_2[11], buf_from_3[11];
                 int sum_from_2, sum_from_3;
                 read(p2_to_5[0], buf_from_2, 10);
                 buf_from_2[10] = '\0';
                 read(p2_to_5[0], &sum_from_2, sizeof(int));
-                read(p3_to_5[0], buf_from_3, 10);
+                read(p4_to_5[0], buf_from_3, 10);
                 buf_from_3[10] = '\0';
                 read(p3_to_5[0], &sum_from_3, sizeof(int));
                 printf("Received from Process 2: %s, Sum: %d\n", buf_from_2, sum_from_2);

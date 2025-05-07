@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
         int num;
 
         while (fscanf(in, "%d", &num) == 1) {
-            if (num % 2 != 0) {
+            if (!is_even(num)) {
                 fprintf(temp, "%d ", num);
             }
         }

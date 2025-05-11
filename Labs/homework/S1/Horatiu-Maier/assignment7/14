@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Name of the pipes
+PIPE_PARENT_TO_CHILD="/tmp/pipe_p2c"
+PIPE_CHILD_TO_PARENT="/tmp/pipe_c2p"
+
+# Creating the pipes if they do not exist
+[ -p "$PIPE_PARENT_TO_CHILD" ] || mkfifo "$PIPE_PARENT_TO_CHILD"
+[ -p "$PIPE_CHILD_TO_PARENT" ] || mkfifo "$PIPE_CHILD_TO_PARENT"
+
+# Child process function
+child_process() {
+    while read -r filename < "$PIPE_PARENT_TO_CHILD"; do
+        if [ "$filename" == "EXIT" ]; then
+            break  # Exit the loop if the termination signal is received
+        fi
+        if [ -f "$filename" ]; then
+            cat "$filename" > "$PIPE_CHILD_TO_PARENT"
+        else
+            echo "Error: File '$filename' not found." > "$PIPE_CHILD_TO_PARENT"
+        fi
+    done
+}
+
+# Start the child process in the background
+child_process &
+
+# Parent process
+echo "Enter the filename:"
+read filename
+echo "$filename" > "$PIPE_PARENT_TO_CHILD"
+
+# Wait for the child process to send the content or error message
+echo "File content or error message:"
+cat < "$PIPE_CHILD_TO_PARENT"
+
+# Send termination signal to the child process
+echo "EXIT" > "$PIPE_PARENT_TO_CHILD"
+
+# Wait for the child process to finish
+wait
+
+# Cleanup
+rm -f "$PIPE_PARENT_TO_CHILD" "$PIPE_CHILD_TO_PARENT"

@@ -1,0 +1,35 @@
+#!/bin/bash
+
+month=""
+
+while true; do
+    read -p "Enter a month in 3 letter format: " month
+    if [[ "$month" =~ ^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)$ ]]; then
+        echo "Month: $month"
+        break
+    else
+        echo "Invalid month"
+        month=""
+    fi
+done
+
+while true; do
+    read -p "Enter a day (1-31): " day
+
+    if [[ "$day" =~ ^([1-9]|[12][0-9]|3[01])$ ]]; then
+        echo "Day: $day" 
+        break
+    else
+        echo "Invalid day"
+    fi
+done
+
+if [ "$day" -lt 10 ]; then
+    search_day=" $day"
+else
+    search_day="$day"
+fi
+
+
+
+sudo grep 'session opened for user' /var/log/auth.log | awk -F'user ' '{print $2}' | sed 's/(.*//' | sort -u

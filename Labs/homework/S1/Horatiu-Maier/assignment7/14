@@ -1,0 +1,37 @@
+#!/bin/bash
+
+
+PIPE_PARENT_TO_CHILD="/tmp/pipe_p2c"
+PIPE_CHILD_TO_PARENT="/tmp/pipe_c2p"
+
+[ -p "$PIPE_PARENT_TO_CHILD" ] || mkfifo "$PIPE_PARENT_TO_CHILD"
+[ -p "$PIPE_CHILD_TO_PARENT" ] || mkfifo "$PIPE_CHILD_TO_PARENT"
+
+child_process() {
+    while read -r filename < "$PIPE_PARENT_TO_CHILD"; do
+        if [ "$filename" == "EXIT" ]; then
+            break  
+        fi
+        if [ -f "$filename" ]; then
+            cat "$filename" > "$PIPE_CHILD_TO_PARENT"
+        else
+            echo "Error: File '$filename' not found." > "$PIPE_CHILD_TO_PARENT"
+        fi
+    done
+}
+
+
+child_process &
+
+echo "Enter the filename:"
+read filename
+echo "$filename" > "$PIPE_PARENT_TO_CHILD"
+
+echo "File content or error message:"
+cat < "$PIPE_CHILD_TO_PARENT"
+
+echo "EXIT" > "$PIPE_PARENT_TO_CHILD"
+
+wait
+
+rm -f "$PIPE_PARENT_TO_CHILD" "$PIPE_CHILD_TO_PARENT"

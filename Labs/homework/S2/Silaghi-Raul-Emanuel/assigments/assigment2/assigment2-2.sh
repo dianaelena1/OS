@@ -1,35 +1,24 @@
 #!/bin/bash
 
-
-if [ "$#" -lt 2 ]; then
-    echo "Usage: $0 <uppercase_letter> <file1> <file2> ..."
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <group_name>"
     exit 1
 fi
 
-uppercase_letter=$1
+group_name=$1
 
-if [[ ! "$uppercase_letter" =~ [A-Z] ]]; then
-    echo "Error: The first argument must be an uppercase letter."
+group_info=$(getent group "$group_name")
+
+if [ -z "$group_info" ]; then
+    echo "Error: Group '$group_name' not found."
     exit 1
 fi
 
-for file in "${@:2}"; do
-    if [ ! -f "$file" ]; then
-        echo "Error: File '$file' does not exist."
-        continue
-    fi
+users=$(echo "$group_info" | cut -d: -f4)
 
-    temp_file=$(mktemp)
-
-    echo "Processing file: $file"
-
-    while IFS= read -r line; do
-        modified_line=$(echo "$line" | sed "s/[a-z]/$uppercase_letter&/g")
-        echo "$modified_line"
-        echo "$modified_line" >> "$temp_file"
-    done < "$file"
-
-    mv "$temp_file" "$file"
-
-    echo "File '$file' has been processed and updated."
-done
+echo "Group: $group_name"
+if [ -z "$users" ]; then
+    echo "No users found in this group."
+else
+    echo "Users: $users"
+fi

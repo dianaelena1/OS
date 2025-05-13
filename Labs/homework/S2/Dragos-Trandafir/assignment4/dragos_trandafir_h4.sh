@@ -16,9 +16,9 @@ fi
 
 
 
-mkdir digit_files
+# mkdir digit_files
 
 for digit in {0..9}; do
-  grep -o "\b$digit\w*" "$1" | sort > "digit_files/file$digit.txt" # \b - word boundary , \w* - any number of characters
+  grep -o "\b$digit\w*" "$1" | sort > "digit_files/file$digit.txt" 
 done
 

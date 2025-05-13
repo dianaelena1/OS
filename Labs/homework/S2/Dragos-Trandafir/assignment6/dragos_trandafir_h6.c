@@ -25,7 +25,7 @@ int product_impera(int *arr, int left, int right)
     }
 
     if (pid1 == 0)
-    { // first child process
+    {
       int left_product = product_impera(arr, left, middle);
       if (left_product > 255)
         printf("The product exceeds 0-255! \n");
@@ -42,7 +42,7 @@ int product_impera(int *arr, int left, int right)
       }
 
       if (pid2 == 0)
-      { // second child process
+      {
         int right_product = product_impera(arr, middle + 1, right);
         if (right_product > 255)
           printf("The product exceeds 0-255! \n");

@@ -33,7 +33,7 @@ echo "Students in group:"
 
 IFS=',' read -ra USERS <<< "$USER_LIST"
 for USER in "${USERS[@]}"; do
-    USER=$(echo "$USER" | xargs)./A_O_h3.sh gr821
+    USER=$(echo "$USER" | xargs)
 
     [ -z "$USER" ] && continue
 

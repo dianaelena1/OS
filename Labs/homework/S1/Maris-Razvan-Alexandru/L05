@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+read -p "Enter start hour (hh): " start_hour
+read -p "Enter start minute (mm): " start_minute
+
+read -p "Enter end hour (hh): " end_hour
+read -p "Enter end minute (mm): " end_minute
+
+start_time="${start_hour}${start_minute}"
+end_time="${end_hour}${end_minute}"
+
+
+sudo grep 'T' /var/log/auth.log | awk -v start="$start_time" -v end="$end_time" -F'T|:' '{
+    hour = $2;
+    minute = $3;
+    time = hour minute;
+    if (time >= start && time <= end) print $0;
+}'  | grep 'sshd.*session opened' | awk -F'user ' '{print $2}' | awk '{print $1}' | sed 's/(.*//' | sort -u

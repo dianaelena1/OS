@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/bin/bash
 # Script to show average users connected in 4-hour intervals for a specific date
 
@@ -107,4 +108,115 @@ for interval in "${intervals[@]}"; do
     
 
     printf "%-15s   %10d\n" "$interval" "$avg_users"
+=======
+#!/bin/bash
+# Script to show average users connected in 4-hour intervals for a specific date
+
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 [month_abbrev] [day]"
+    echo "Example: $0 Mar 8"
+    exit 1
+fi
+
+# Valid month abbreviations and their days (considering non-leap year)
+declare -A month_days=( 
+    ["jan"]=31 ["feb"]=28 ["mar"]=31 ["apr"]=30 
+    ["may"]=31 ["jun"]=30 ["jul"]=31 ["aug"]=31 
+    ["sep"]=30 ["oct"]=31 ["nov"]=30 ["dec"]=31
+)
+
+# Map month abbreviations to numeric format
+declare -A month_to_number=(
+    ["jan"]="01" ["feb"]="02" ["mar"]="03" ["apr"]="04"
+    ["may"]="05" ["jun"]="06" ["jul"]="07" ["aug"]="08"
+    ["sep"]="09" ["oct"]="10" ["nov"]="11" ["dec"]="12"
+)
+
+month=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+day=$2
+
+# Check if month is valid
+if [[ -z "${month_days[$month]}" ]]; then
+    echo "Error: Invalid month abbreviation"
+    exit 1
+fi
+
+# Check if day is a number
+if ! [[ "$day" =~ ^[0-9]+$ ]]; then 
+    echo "Error: Day must be a number"
+    exit 1
+fi
+
+# Check if day is valid for the month
+max_days=${month_days[$month]}
+
+# Handle February in leap years
+if [[ "$month" == "feb" ]]; then
+    current_year=$(date +%Y)
+    if (( (current_year % 400 == 0) || (current_year % 100 != 0 && current_year % 4 == 0) )); then
+        max_days=29
+    fi
+fi
+
+if (( day < 1 || day > max_days )); then
+    echo "Error: Day must be between 1 and $max_days for $month"
+    exit 1
+fi
+
+# Convert month abbreviation to numeric format
+numeric_month=${month_to_number[$month]}
+
+# current year
+year=$(date +%Y)
+
+# Create the date string in format "Mon DD" (e.g. "Mar 08")
+formatted_date=$(printf "%s %02d" "${month^}" "$day")
+
+# Define the 4-hour intervals
+intervals=(
+    "00:00-04:00"
+    "04:00-08:00"
+    "08:00-12:00"
+    "12:00-16:00"
+    "16:00-20:00"
+    "20:00-00:00"
+)
+
+# Function to calculate average users in a time interval
+calculate_average_users() {
+    local start_time=$1
+    local end_time=$2
+    
+    # If end time is 00:00, it means next day
+    if [[ "$end_time" == "00:00" ]]; then
+        # Get logs from current date 20:00 to next day 00:00
+        log_entries=$(last -s "$year-$numeric_month-$day $start_time" -t "$year-$numeric_month-$((day+1)) $end_time" | grep -v "reboot" | grep -v "wtmp")
+    else
+        # Get logs for the same day
+        log_entries=$(last -s "$year-$numeric_month-$day $start_time" -t "$year-$numeric_month-$day $end_time" | grep -v "reboot" | grep -v "wtmp")
+    fi
+    
+    # Count unique users
+    unique_users=$(echo "$log_entries" | awk '{print $1}' | sort | uniq | wc -l)
+    
+    
+    
+    echo "$unique_users"
+}
+
+
+echo "Time Interval       Average Users"
+echo "-------------       -------------"
+
+# Process each interval
+for interval in "${intervals[@]}"; do
+    start_time=$(echo "$interval" | cut -d'-' -f1)
+    end_time=$(echo "$interval" | cut -d'-' -f2)
+    
+
+    avg_users=$(calculate_average_users "$start_time" "$end_time")
+    
+
+    printf "%-15s   %10d\n" "$interval" "$avg_users"
+>>>>>>> 21970a10c2050f5660f1e6eddc9abc0b9720bc3e
 done

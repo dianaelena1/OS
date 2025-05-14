@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 abcd
 dce
 ce mai faci
 aloo
+=======
+abcd
+aloo
+ce mai faci
+dce
+>>>>>>> 21970a10c2050f5660f1e6eddc9abc0b9720bc3e

@@ -1,0 +1,42 @@
+#!/bin/bash
+
+count=0
+while [ $count = 0 ]; do
+    read -p "Enter a lowercase letter:" letter    
+    if [[ $letter =~ ^[a-z]$ ]]; then
+        echo "You entered: $letter"
+        count=1
+    else
+        echo "Invalid input"
+    fi
+done
+
+declare -a files
+index=0
+count2=0
+
+while [ $count2 = 0 ]; do
+    read -p "Enter filename (type 1 to stop):" filename
+
+    if [ "$filename" = "1" ]; then
+        break
+    fi
+    files[$index]=$filename
+    index=$((index + 1))
+done
+
+echo "You entered files:"
+for file in "${files[@]}"; do
+    echo "$file"
+done
+
+
+for file in "${files[@]}"; do
+	if [ -f "$file" ]; then
+		echo "File changed: $file"
+		sed -i "s/[^a-zA-Z0-9[:space:]]/$letter/g" "$file"
+	else
+	    	echo " '$file' not found"
+	fi
+done
+

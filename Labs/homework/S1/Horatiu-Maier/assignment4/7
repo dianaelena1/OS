@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/bin/bash
 
 # Store the initial list of users+terminals
@@ -31,3 +32,42 @@ while true; do
     # Update previous users list
     prev_users="$current_users"
 done
+=======
+#!/bin/bash
+
+# Store the initial list of users+terminals
+prev_users=$(who | awk '{print $1 " " $2}')
+
+while true; do
+    sleep 5  # checks every 5 seconds
+    echo "Checking for new logins..."
+    # Get current list of users+terminals
+    current_users=$(who | awk '{print $1 " " $2}')
+
+    # Compare to find new logins
+    new_entries=$(comm -13 <(echo "$prev_users" | sort) <(echo "$current_users" | sort))
+
+    echo "Previous users: $prev_users"
+    echo "Current users: $current_users"
+    echo "New entries: $new_entries"
+    
+    if [ ! -z "$new_entries" ]; then
+        # Prepare the message
+        msg="=== Active users and process count ===\n"
+        for user in $(who | awk '{print $1}' | sort | uniq); do
+            count=$(ps -u "$user" --no-headers | wc -l)
+            msg+="$user: $count processes\n"
+        done
+
+        # Send message to each new terminal
+        while read -r entry; do
+            username=$(echo "$entry" | awk '{print $1}')
+            tty=$(echo "$entry" | awk '{print $2}')
+            echo -e "$msg" > /dev/$tty
+        done <<< "$new_entries"
+    fi
+
+    # Update previous users list
+    #prev_users="$current_users"
+done
+>>>>>>> 21970a10c2050f5660f1e6eddc9abc0b9720bc3e

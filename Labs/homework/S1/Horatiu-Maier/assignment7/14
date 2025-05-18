@@ -35,3 +35,9 @@ echo "EXIT" > "$PIPE_PARENT_TO_CHILD"
 wait
 
 rm -f "$PIPE_PARENT_TO_CHILD" "$PIPE_CHILD_TO_PARENT"
+
+
+
+int pipe(int pipefd[2]);
+
+

@@ -22,6 +22,5 @@ while true; do
             echo "[$TIMESTAMP] User: $USER | Server: $SERVER" >> "$LOG_FILE"
         done
     fi
-
     sleep 5
 done

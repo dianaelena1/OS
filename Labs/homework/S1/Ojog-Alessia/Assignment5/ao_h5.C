@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+//Write a C Program that counts the number of characters on each line of a text file.
+// Make no assumptions regarding the maximum length of a line.
+
 int main(int argc, char *argv[]) {
     FILE *file;
     char *line = NULL;
@@ -22,8 +25,8 @@ int main(int argc, char *argv[]) {
     }
 
     while ((read = getline(&line, &len, file)) != -1) {
-        if (line[read - 1] == '\n') {
-            read--;
+        if (read > 0 && line[read - 1] == '\n') {
+            line[--read] = '\0';
         }
         printf("Line %d: %zd characters\n", line_number++, read);
     }

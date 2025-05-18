@@ -1,6 +1,5 @@
 This is a test file.
-The banana is a fruit.
 Another line without the keyword.
 Banana bread is tasty.
-banana
 
+ 

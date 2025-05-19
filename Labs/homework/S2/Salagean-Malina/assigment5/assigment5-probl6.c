@@ -1,5 +1,5 @@
-#Write a C Program that receives as command line arguments a word and the name of a file. 
-#The program will delete from the file the occurrences of the provided word.
+//Write a C Program that receives as command line arguments a word and the name of a file. 
+//The program will delete from the file the occurrences of the provided word.
 
 #include <stdio.h>
 #include <stdlib.h>

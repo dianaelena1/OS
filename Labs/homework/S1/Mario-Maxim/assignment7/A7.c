@@ -10,7 +10,7 @@
 #include <string.h>
 #include <sys/wait.h>
 
-#define MAX_LINE 32
+#define MAX_LINE 31
 #define MAX_LINES 100
 
 void replace_digits_with_9(char *line) {
@@ -23,10 +23,6 @@ void replace_letters_with_G(char *line) {
     for (int i = 0; line[i]; i++)
         if (isalpha(line[i]))
             line[i] = 'G';
-}
-
-int compare(const void *a, const void *b) {
-    return strcmp(*(char **)a, *(char **)b);
 }
 
 int main() {

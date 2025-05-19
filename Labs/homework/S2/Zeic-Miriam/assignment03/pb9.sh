@@ -21,7 +21,8 @@ do
             delete counts
 
             for (i = 1; i <= NF; i++) {
-                counts[$i]++
+                word = $i
+                counts[word]++
             }
 
             for (word in counts) {

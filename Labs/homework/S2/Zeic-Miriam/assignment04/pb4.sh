@@ -15,7 +15,7 @@ shift
 
 for file in "$@"; do
    echo "File: $file"
-   find "$root_directory" -type f -name "$file" -printf '%W %h\n' \
+   find "$root_directory" -type f -name "$file" -printf '%B@ %h\n' \
         | sort -nr \
         | cut -d' ' -f2-
 done

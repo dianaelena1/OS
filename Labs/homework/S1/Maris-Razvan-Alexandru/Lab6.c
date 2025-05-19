@@ -1,3 +1,5 @@
+//Given the Polynomic A=(a0, a1, ...,an). Compute the value of A for an x, using Horner formula and several processes. For example: a0+a1*x+a2*x2
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

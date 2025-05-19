@@ -6,6 +6,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+// Implement the following structure of processes, in which the vertices indicate the communication between processes using pipes: Process 1: read from stdin and write towards 2 all lines that start with a letter, writes to 3 all that start with a digit and to 4 the rest of the lines Processes 2, 3, 4: print what they read from pipe
+
 #define BUF_SIZE 1024
 
 void child_process(int read_fd, const char *proc_name) {

@@ -93,7 +93,7 @@ int main() {
                 read(p2_to_5[0], buf_from_2, 10);
                 buf_from_2[10] = '\0';
                 read(p2_to_5[0], &sum_from_2, sizeof(int));
-                read(p4_to_5[0], buf_from_3, 10);
+                read(p3_to_5[0], buf_from_3, 10); //!
                 buf_from_3[10] = '\0';
                 read(p3_to_5[0], &sum_from_3, sizeof(int));
                 printf("Received from Process 2: %s, Sum: %d\n", buf_from_2, sum_from_2);

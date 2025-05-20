@@ -1,6 +1,12 @@
 {
     "files.associations": {
         "ctype.h": "c",
+<<<<<<< HEAD
         "assignment_7_1.C": "cpp"
     }
+=======
+        "ao_h5.C": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+>>>>>>> c146d89afa158ed7966e28dcfd79d6d8d5a01f1e
 }

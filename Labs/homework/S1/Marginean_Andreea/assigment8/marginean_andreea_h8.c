@@ -1,3 +1,10 @@
+<<<<<<< Updated upstream
+=======
+// Implement the following structure of processes, in which the vertices indicate thecommunication between processes using pipes:
+// Process 1: write to 3 what is read from stdin
+// Process 2: read from 3 and replace all vowels with digits (aeiou->12345)
+// Process 3: read from 1 and write to 2 only alphanumeric lines
+>>>>>>> Stashed changes
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,7 +19,10 @@
 #define FIFO2 "/tmp/fifo_3_2"
 #define MAXLINE 256
 
+<<<<<<< Updated upstream
 // Replace vowels with digits
+=======
+>>>>>>> Stashed changes
 void replace_vowels(char *line) {
     for (int i = 0; line[i]; i++) {
         switch(tolower(line[i])) {
@@ -25,7 +35,10 @@ void replace_vowels(char *line) {
     }
 }
 
+<<<<<<< Updated upstream
 // Check if line is alphanumeric (letters, digits, spaces allowed)
+=======
+>>>>>>> Stashed changes
 int is_alphanumeric_line(const char *line) {
     for (int i = 0; line[i]; i++) {
         if (!isalnum(line[i]) && !isspace(line[i]))
@@ -35,16 +48,24 @@ int is_alphanumeric_line(const char *line) {
 }
 
 int main() {
+<<<<<<< Updated upstream
     // Create FIFOs (named pipes)
+=======
+>>>>>>> Stashed changes
     mkfifo(FIFO1, 0666);
     mkfifo(FIFO2, 0666);
 
     pid_t pid1, pid2, pid3;
 
+<<<<<<< Updated upstream
     // Fork Process 1
     pid1 = fork();
     if (pid1 == 0) {
         // Process 1: read from stdin, write to FIFO1
+=======
+    pid1 = fork();
+    if (pid1 == 0) {
+>>>>>>> Stashed changes
         int fd_write = open(FIFO1, O_WRONLY);
         if (fd_write < 0) { perror("Process 1 open FIFO1 write"); exit(1); }
 
@@ -57,10 +78,15 @@ int main() {
         exit(0);
     }
 
+<<<<<<< Updated upstream
     // Fork Process 3
     pid3 = fork();
     if (pid3 == 0) {
         // Process 3: read from FIFO1, filter alphanumeric lines, write to FIFO2
+=======
+    pid3 = fork();
+    if (pid3 == 0) {
+>>>>>>> Stashed changes
         int fd_read = open(FIFO1, O_RDONLY);
         int fd_write = open(FIFO2, O_WRONLY);
         if (fd_read < 0 || fd_write < 0) {
@@ -72,7 +98,10 @@ int main() {
         while ((n = read(fd_read, buffer, sizeof(buffer)-1)) > 0) {
             buffer[n] = '\0';
 
+<<<<<<< Updated upstream
             // Since read may read partial lines, we must split by lines:
+=======
+>>>>>>> Stashed changes
             char *line = strtok(buffer, "\n");
             while (line != NULL) {
                 if (is_alphanumeric_line(line)) {
@@ -88,10 +117,15 @@ int main() {
         exit(0);
     }
 
+<<<<<<< Updated upstream
     // Fork Process 2
     pid2 = fork();
     if (pid2 == 0) {
         // Process 2: read from FIFO2, replace vowels and print
+=======
+    pid2 = fork();
+    if (pid2 == 0) {
+>>>>>>> Stashed changes
         int fd_read = open(FIFO2, O_RDONLY);
         if (fd_read < 0) { perror("Process 2 open FIFO2 read"); exit(1); }
 
@@ -108,12 +142,18 @@ int main() {
         exit(0);
     }
 
+<<<<<<< Updated upstream
     // Parent waits for children
+=======
+>>>>>>> Stashed changes
     wait(NULL);
     wait(NULL);
     wait(NULL);
 
+<<<<<<< Updated upstream
     // Cleanup FIFOs
+=======
+>>>>>>> Stashed changes
     unlink(FIFO1);
     unlink(FIFO2);
 

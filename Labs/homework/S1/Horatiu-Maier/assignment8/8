@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Create two named pipes (FIFOs): one for parent-to-child, one for child-to-parent communication
+pipe1=/tmp/pipe1
+pipe2=/tmp/pipe2
+
+# Create the pipes if they don't exist
+[[ -p $pipe1 ]] || mkfifo $pipe1
+[[ -p $pipe2 ]] || mkfifo $pipe2
+
+# Child process - reads a username and returns login dates
+(
+  # Read the username from pipe1
+  read username < $pipe1
+
+  # Use 'last' to get login entries for that user
+  logins=$(last "$username" | awk '{print $4, $5, $6, $7, $8}' | grep -v 'wtmp')
+
+  # Send the result back through pipe2
+  echo "$logins" > $pipe2
+) &
+
+# Parent process: prompts the user for a username
+read -p "Enter username: " input_user
+
+# Send the username to the child
+echo "$input_user" > $pipe1
+
+# Read and display the login dates returned by the child
+echo "Login dates for user '$input_user':"
+cat $pipe2
+
+# Clean up the named pipes
+rm $pipe1 $pipe2

@@ -3,44 +3,49 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-int divide_sum(int* array, int start, int end) {
-    if (start > end) return 0;
-    if (start == end) return array[start];
+int sum_array(int *arr, int start, int end) {
+    int sum = 0;
+    for (int i = start; i < end; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
+
+int divide_and_conquer(int *arr, int start, int end) {
+    if (end - start == 1) {
+        return arr[start];
+    }
 
     int mid = (start + end) / 2;
-    int pipe1[2], pipe2[2];
-    pipe(pipe1);
-    pipe(pipe2);
 
-    if (fork() == 0) {
-        int left = divide_sum(array, start, mid);
-        write(pipe1[1], &left, sizeof(int));
-        close(pipe1[1]);
-        exit(0);
+    pid_t pid1 = fork();
+    if (pid1 == 0) {
+        int left_sum = divide_and_conquer(arr, start, mid);
+        exit(left_sum);
+    } else {
+        pid_t pid2 = fork(); 
+        if (pid2 == 0) {
+            int right_sum = divide_and_conquer(arr, mid, end);
+            exit(right_sum);  
+        } else {
+            int left_sum, right_sum;
+            waitpid(pid1, &left_sum, 0);
+            waitpid(pid2, &right_sum, 0);
+
+            left_sum = WEXITSTATUS(left_sum);
+            right_sum = WEXITSTATUS(right_sum);
+
+            return left_sum + right_sum;
+        }
     }
-
-    if (fork() == 0) {
-        int right = divide_sum(array, mid + 1, end);
-        write(pipe2[1], &right, sizeof(int));
-        close(pipe2[1]);
-        exit(0);
-    }
-
-    int sum1, sum2;
-    close(pipe1[1]); close(pipe2[1]);
-    read(pipe1[0], &sum1, sizeof(int));
-    read(pipe2[0], &sum2, sizeof(int));
-    close(pipe1[0]); close(pipe2[0]);
-
-    wait(NULL); wait(NULL);
-    return sum1 + sum2;
 }
 
 int main() {
-    int array[] = {1, 4, 5, 9, 12, 18};
-    int n = sizeof(array) / sizeof(array[0]);
+    int arr[] = {1, 2, 3, 4, 5, 6};
+    int n = sizeof(arr) / sizeof(arr[0]);
 
-    int sum = divide_sum(array, 0, n - 1);
-    printf("Total sum: %d\n", sum);
+    int total_sum = divide_and_conquer(arr, 0, n);
+
+    printf("Total sum of the array: %d\n", total_sum);
     return 0;
 }

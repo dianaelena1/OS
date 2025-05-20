@@ -1,0 +1,16 @@
+#!/bin/bash
+
+LOGFILE="/mnt/e/OS/L06-Log.txt"
+echo "Working... (Ctrl+C to stop)"
+
+while true; do
+    for pid in $(pgrep -x sleep); do
+        user=$(ps -o user= -p "$pid")
+        cmd=$(ps -o args= -p "$pid")
+        server=$(echo "$cmd" | awk '{print $2}')
+        timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+
+        echo "$timestamp - User: $user - Command: $cmd - Server: ${server:-[unknown]}" >> "$LOGFILE"
+    done
+    sleep 5
+done

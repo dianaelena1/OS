@@ -1,5 +1,3 @@
 Just another file.
 Nothing to see here.
-banana
 End of file.
-banana banana

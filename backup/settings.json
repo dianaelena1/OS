@@ -1,6 +1,5 @@
 {
     "files.associations": {
-        "ctype.h": "c",
         "ao_h5.C": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"

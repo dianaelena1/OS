@@ -21,7 +21,7 @@ int main(void) {
         perror("malloc");
         return EXIT_FAILURE;
     }
-
+   
     for (int i = 0; i < n; i++) {
         if (scanf("%d", &x[i]) != 1) {
             fprintf(stderr, "Failed to read x[%d]\n", i);

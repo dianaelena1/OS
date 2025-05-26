@@ -39,8 +39,8 @@ int main() {
         }
         server[n] = '\0';
       
-        char *nl = strchr(server, '\n');
-        if (nl) *nl = '\0';
+        char *newline = strchr(server, '\n');
+        if (newline) *newline = '\0';
 
         if (dup2(c2p[1], STDOUT_FILENO) == -1) {
             perror("dup2");

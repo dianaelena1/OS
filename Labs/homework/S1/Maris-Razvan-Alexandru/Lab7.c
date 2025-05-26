@@ -26,7 +26,6 @@ int main() {
         char username[100];
         read(p2c[0], username, sizeof(username));
 
-        // Prepare command: last <username>
         char cmd[150];
         snprintf(cmd, sizeof(cmd), "last %s", username);
 

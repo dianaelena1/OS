@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+//
+// 8. Parent process sends to the child a username, and the child sends back to the parent the dates when the specified user logged in.
+//
+=======
 //
 // 8. Parent process sends to the child a username, and the child sends back to the parent the dates when the specified user logged in.
 //
@@ -95,3 +100,4 @@ int main()
 }
 // gcc -o dragos_trandafir_h8 dragos_trandafir_h8.c
 //./dragos_trandafir_h8
+>>>>>>> c1fef15a4af1ecc8630ff882b0b005ebe7117ea6

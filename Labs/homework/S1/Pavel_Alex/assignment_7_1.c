@@ -19,9 +19,9 @@ int main(int argc, char *argv[]) {
     size_t len = 0;
     ssize_t read;
 
-    while ((read = getline(&line, &len, fp)) != -1) {
-        printf("%s\n", line); // Print the line and an extra empty line
-    }
+    //while ((read = getline(&line, &len, fp)) != -1) {
+    //    printf("%s\n", line); // Print the line and an extra empty line
+    //}
 
     free(line);
     fclose(fp);

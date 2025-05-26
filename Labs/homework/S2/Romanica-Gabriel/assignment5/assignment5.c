@@ -5,65 +5,41 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#define INITIAL_BUFFER 128
-
-char *read_line(FILE *fp) {
-    int ch;
-    size_t size = INITIAL_BUFFER;
-    size_t len = 0;
-    char *buffer = malloc(size);
-
-    if (!buffer) return NULL;
-
-    while ((ch = fgetc(fp)) != EOF) {
-        if (len + 1 >= size) {
-            size *= 2;
-            char *new_buffer = realloc(buffer, size);
-            if (!new_buffer) {
-                free(buffer);
-                return NULL;
-            }
-            buffer = new_buffer;
-        }
-        buffer[len++] = ch;
-        if (ch == '\n') break;
-    }
-
-    if (len == 0 && ch == EOF) {
-        free(buffer);
-        return NULL;
-    }
-
-    buffer[len] = '\0';
-    return buffer;
-}
-
 int main(int argc, char *argv[]) {
+    // Check for proper usage
     if (argc != 2) {
         fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
         return 1;
     }
 
-    FILE *fp = fopen(argv[1], "r");
-    if (!fp) {
+    // Open the file
+    FILE *file = fopen(argv[1], "r");
+    if (file == NULL) {
         perror("Error opening file");
         return 1;
     }
 
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t read;
     int line_number = 1;
-    char *line;
 
-    while ((line = read_line(fp)) != NULL) {
+    // Read the file line by line
+    while ((read = getline(&line, &len, file)) != -1) {
         int digit_count = 0;
-        for (size_t i = 0; line[i] != '\0'; i++) {
+
+        for (ssize_t i = 0; i < read; i++) {
             if (isdigit((unsigned char)line[i])) {
                 digit_count++;
             }
         }
+
         printf("Line %d: %d digit(s)\n", line_number++, digit_count);
-        free(line);
     }
 
-    fclose(fp);
+    // Cleanup
+    free(line);
+    fclose(file);
+
     return 0;
 }

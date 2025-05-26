@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#write a Shell program that, starting with the directory given as a first parameter, downwards (recursively), 
+#write a (IGNORE)  Shell program that, starting with the directory given as a first parameter, downwards (recursively), 
 #creates a list of all names that appear (files and directory), and for each filename it prints the number of files with the same name
 
 if [ -z "$1" ]; then

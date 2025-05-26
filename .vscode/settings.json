@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "ctype.h": "c"
+        "ctype.h": "c",
+        "stdlib.h": "c",
+        "string.h": "c",
+        "wait.h": "c"
     }
 }

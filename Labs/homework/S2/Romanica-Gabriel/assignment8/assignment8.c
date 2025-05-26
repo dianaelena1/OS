@@ -1,3 +1,5 @@
+//Parent process sends to the child a username, and the child sends back to the parent the number of processes run by the user.
+/*
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -70,3 +72,5 @@ int main() {
 
     return 0;
 }
+
+*/

@@ -1,76 +1,95 @@
 //Parent process sends to the child a username, and the child sends back to the parent the number of processes run by the user.
-/*
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <string.h>
-#include <sys/wait.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+#define FIFO1 "fifo1"
+#define FIFO2 "fifo2"
 
 int main() {
-    int pipe1[2]; // Parent to Child
-    int pipe2[2]; // Child to Parent
-    pid_t pid;
-    char username[100];
-    
-    // Create pipes
-    if (pipe(pipe1) == -1 || pipe(pipe2) == -1) {
-        perror("pipe");
-        exit(1);
-    }
+    // Create FIFOs (ignore error if already exist)
+    mkfifo(FIFO1, 0666);
+    mkfifo(FIFO2, 0666);
 
-    printf("Enter username: ");
-    scanf("%s", username);
+    pid_t pid = fork();
 
-    pid = fork();
     if (pid < 0) {
         perror("fork");
         exit(1);
     }
 
-    if (pid == 0) {
+    if (pid > 0) {
+        // Parent process
+        int fd1 = open(FIFO1, O_WRONLY);
+        if (fd1 < 0) {
+            perror("open fifo1");
+            exit(1);
+        }
+
+        char username[100];
+        printf("Enter username: ");
+        scanf("%s", username);
+
+        write(fd1, username, strlen(username) + 1);
+        close(fd1);
+
+        // Receive result
+        int fd2 = open(FIFO2, O_RDONLY);
+        if (fd2 < 0) {
+            perror("open fifo2");
+            exit(1);
+        }
+
+        char buffer[100];
+        read(fd2, buffer, sizeof(buffer));
+        printf("Number of processes for user %s: %s\n", username, buffer);
+        close(fd2);
+
+        // Clean up
+        unlink(FIFO1);
+        unlink(FIFO2);
+    } else {
         // Child process
-        close(pipe1[1]); // Close write end of pipe1
-        close(pipe2[0]); // Close read end of pipe2
+        int fd1 = open(FIFO1, O_RDONLY);
+        if (fd1 < 0) {
+            perror("open fifo1");
+            exit(1);
+        }
 
-        char user[100];
-        read(pipe1[0], user, sizeof(user));
-        close(pipe1[0]);
+        char username[100];
+        read(fd1, username, sizeof(username));
+        close(fd1);
 
-        // Prepare shell command: ps -u username | wc -l
+        // Build shell command
         char command[200];
-        snprintf(command, sizeof(command), "ps -u %s | wc -l", user);
+        snprintf(command, sizeof(command), "ps -u %s | wc -l", username);
 
         FILE *fp = popen(command, "r");
-        if (fp == NULL) {
+        if (!fp) {
             perror("popen");
             exit(1);
         }
 
-        char count[16];
-        fgets(count, sizeof(count), fp);
+        char result[100];
+        fgets(result, sizeof(result), fp);
         pclose(fp);
 
-        write(pipe2[1], count, strlen(count) + 1);
-        close(pipe2[1]);
-        exit(0);
-    } else {
-        // Parent process
-        close(pipe1[0]); // Close read end of pipe1
-        close(pipe2[1]); // Close write end of pipe2
+        // Send back result
+        int fd2 = open(FIFO2, O_WRONLY);
+        if (fd2 < 0) {
+            perror("open fifo2");
+            exit(1);
+        }
 
-        write(pipe1[1], username, strlen(username) + 1);
-        close(pipe1[1]);
-
-        char result[16];
-        read(pipe2[0], result, sizeof(result));
-        close(pipe2[0]);
-
-        wait(NULL); // Wait for child to finish
-
-        printf("Number of processes run by %s: %s", username, result);
+        write(fd2, result, strlen(result) + 1);
+        close(fd2);
     }
 
     return 0;
 }
 
-*/

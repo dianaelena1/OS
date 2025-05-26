@@ -1,17 +1,17 @@
 {
     "configurations": [
         {
-            "name": "Linux",
+            "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/usr/include",
-                "/usr/local/include",
-                "/usr/lib/gcc/x86_64-linux-gnu/13/include"
+                "C:/msys64/ucrt64/include",
+                "C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.2.0/include"
             ],
             "defines": [],
             "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
             "cStandard": "c11",
-            "intelliSenseMode": "linux-gcc-x64"
+            "intelliSenseMode": "windows-gcc-x64",
+            "configurationProvider": "ms-vscode.cpptools"
         }
     ],
     "version": 4

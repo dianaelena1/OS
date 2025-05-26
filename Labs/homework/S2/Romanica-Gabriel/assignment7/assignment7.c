@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <ctype.h>
-#include <sys/wait.h>
+//#include <sys/wait.h>
 
 
 #define MAX_LINE 1024

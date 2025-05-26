@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include <string.h>
 #include <ctype.h>
+#include <sys/wait.h>
+
 
 #define MAX_LINE 1024
 int contains_letter(const char *line) {

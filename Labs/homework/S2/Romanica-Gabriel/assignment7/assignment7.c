@@ -3,11 +3,14 @@
 //Process 1: read from stdin and write to 2 lines that are alphanumerical and to 3 lines that do not contain letters
 //Process 2: replace digits with ‘_’
 //Process 3,4: print to stdout what is read.
+/*
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 #include <ctype.h>
+#include <sys/wait.h>
+
 
 #define MAX_LINE 1024
 int contains_letter(const char *line) {
@@ -104,3 +107,5 @@ int main() {
 
     return 0;
 }
+
+*/

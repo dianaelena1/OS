@@ -6,13 +6,11 @@
 #include <ctype.h>
 
 int main(int argc, char *argv[]) {
-    // Check for proper usage
     if (argc != 2) {
         fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
         return 1;
     }
 
-    // Open the file
     FILE *file = fopen(argv[1], "r");
     if (file == NULL) {
         perror("Error opening file");
@@ -24,7 +22,6 @@ int main(int argc, char *argv[]) {
     ssize_t read;
     int line_number = 1;
 
-    // Read the file line by line
     while ((read = getline(&line, &len, file)) != -1) {
         int digit_count = 0;
 
@@ -37,7 +34,6 @@ int main(int argc, char *argv[]) {
         printf("Line %d: %d digit(s)\n", line_number++, digit_count);
     }
 
-    // Cleanup
     free(line);
     fclose(file);
 

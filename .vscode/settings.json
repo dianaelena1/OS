@@ -1,14 +1,6 @@
-<<<<<<< HEAD
 {
     "files.associations": {
         "ctype.h": "c",
         "assignment_7_1.C": "cpp"
     }
-=======
-{
-    "files.associations": {
-        "ctype.h": "c",
-        "assignment_7_1.C": "cpp"
-    }
->>>>>>> c1fef15a4af1ecc8630ff882b0b005ebe7117ea6
 }

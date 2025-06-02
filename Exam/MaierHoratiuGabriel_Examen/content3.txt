@@ -1,0 +1,8 @@
+This is a short line. 456
+This is a much longer line than the previous one.
+Short.
+The quick brown fox jumps over the lazy dog.
+Tiny. 123
+A line with exactly thirty-nine characters.
+This is the longest line in this file, and it should be detected as such by your program!
+End. 890

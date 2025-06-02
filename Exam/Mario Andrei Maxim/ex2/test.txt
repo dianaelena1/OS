@@ -1,0 +1,4 @@
+this line3 have a digit
+test
+dig2it
+test 4

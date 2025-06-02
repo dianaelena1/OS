@@ -1,0 +1,21 @@
+#!/bin/bash
+# delete_digit_words.sh — delete all words containing at least one digit in given files
+
+if [[ $# -lt 1 ]]; then
+  echo "Usage: $0 <file1> [file2 …]"
+  exit 1
+fi
+
+for file in "$@"; do
+  if [[ ! -f "$file" ]]; then
+    echo "Warning: '$file' is not a regular file, skipping."
+    continue
+  fi
+
+  # Create a temp file
+  tmp=$(mktemp) || { echo "Failed to create temp file"; exit 1; }
+
+  # Remove any “word” (sequence of non-space chars) containing a digit, in-place
+  sed -E 's/[[:<:]][^[:space:]]*[0-9][^[:space:]]*[[:>:]]//g' "$file" > "$tmp"
+  mv "$tmp" "$file"
+done
